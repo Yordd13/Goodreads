@@ -1,7 +1,7 @@
-#include "Date.h"
-#include "DateValidation.h"
-#include "DateResources.h"
-#include "DateUtils.h"
+#include "models/Date.h"
+#include "validator/DateValidation.h"
+#include "constants/DateResources.h"
+#include "utils/DateUtils.h"
 #include <stdexcept>
 #include <chrono>
 #include <iomanip>
@@ -65,9 +65,6 @@ int Date::toSerial() const
 
 	for (int y = resources::date::MIN_YEAR; y < year; ++y) {
 		serial += DateUtils::isLeapYear(y) ? 366 : 365;
-		if (DateUtils::isLeapYear(y)) {
-			serial += 1;
-		}
 	}
 
 	for (int m = 1; m < month; ++m) {

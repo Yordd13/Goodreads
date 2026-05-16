@@ -1,5 +1,5 @@
-#include "DateUtils.h"
-#include "DateResources.h"
+#include "utils/DateUtils.h"
+#include "constants/DateResources.h"
 
 bool DateUtils::isLeapYear(int year)
 {
