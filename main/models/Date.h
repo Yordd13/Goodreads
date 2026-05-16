@@ -4,6 +4,7 @@
 class Date
 {
 private:
+
 	int year;
 	int month;
 	int day;
@@ -12,6 +13,7 @@ private:
     static Date fromSerial(int serial);
 
 public:
+
     Date() = default;
     Date(int day, int month, int year);
 
@@ -24,5 +26,6 @@ public:
 
     auto operator<=>(const Date& other) const = default;
     bool operator==(const Date& other) const = default;
+
 };
 

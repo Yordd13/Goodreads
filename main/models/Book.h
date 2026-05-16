@@ -6,6 +6,7 @@
 class Book
 {
 private:
+
 	std::string title;
 	std::string authorName;
 	std::string publisherName;
@@ -16,8 +17,8 @@ private:
 	Date publicationDate;
 	size_t numberOfPages;
 
-
 public:
+
 	Book() = default;
 	Book(const std::string& title, const std::string& authorName,
 		const std::string& publisherName, const Date& releaseDate,
@@ -38,10 +39,12 @@ public:
 	void addRating(int rating);
 
 private:
+
 	void updateAverageRating(int newRating);
 	void updateRatingCount();
 
 	void toSerial(std::ostream& out) const;
 	static Book fromSerial(std::istream& in);
+
 };
 

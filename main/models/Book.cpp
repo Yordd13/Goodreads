@@ -76,9 +76,11 @@ void Book::updateRatingCount()
 
 void Book::toSerial(std::ostream& out) const
 {
+    //TODO
 }
 
 Book Book::fromSerial(std::istream& in)
 {
+    //TODO
     return Book();
 }
