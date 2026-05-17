@@ -3,7 +3,7 @@
 #include "constants/DateResources.h"
 #include "utils/DateUtils.h"
 #include <stdexcept>
-#include <chrono>
+#include <sstream>
 #include <iomanip>
 
 
@@ -64,7 +64,9 @@ int Date::toSerial() const
 	int serial = 0;
 
 	for (int y = resources::date::MIN_YEAR; y < year; ++y) {
-		serial += DateUtils::isLeapYear(y) ? 366 : 365;
+		serial += DateUtils::isLeapYear(y) 
+			? resources::date::DAYS_IN_LEAP_YEAR 
+			: resources::date::DAYS_IN_YEAR;
 	}
 
 	for (int m = 1; m < month; ++m) {

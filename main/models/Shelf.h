@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 #include <vector>
-#include <memory>
 #include "models/Book.h"
 #include "models/Date.h"
 
@@ -12,7 +11,8 @@ private:
 	std::string name;
 	std::vector<std::string> books;
 	Date creationDate;
-	size_t bookCount;
+
+	void setName(const std::string& name);
 
 public:
 
@@ -26,7 +26,7 @@ public:
 	const std::vector<std::string>& getBooks() const;
 
 
-	bool addBook(const std::shared_ptr<Book>& book);
+	bool addBook(const std::string& title);
 	bool removeBook(const std::string& title);
 	bool hasBook(const std::string& title) const;
 

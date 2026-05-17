@@ -10,6 +10,10 @@ private:
 	std::string content;
 	bool isRead;
 
+	void setNameSender(const std::string& nameSender);
+	void setNameReceiver(const std::string& nameReceiver);
+	void setContent(const std::string& content);
+
 public:
 
 	Message() = delete;

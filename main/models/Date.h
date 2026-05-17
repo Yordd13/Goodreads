@@ -9,9 +9,6 @@ private:
 	int month;
 	int day;
 
-    int toSerial() const;
-    static Date fromSerial(int serial);
-
 public:
 
     Date() = default;
@@ -27,5 +24,7 @@ public:
     auto operator<=>(const Date& other) const = default;
     bool operator==(const Date& other) const = default;
 
+    int toSerial() const;
+    static Date fromSerial(int serial);
 };
 

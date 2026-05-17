@@ -1,5 +1,4 @@
 #pragma once
-#include "models/Date.h"
 
 namespace resources::date
 {
@@ -17,6 +16,4 @@ namespace resources::date
     constexpr int MIN_DAY = 1;
     constexpr int DAYS_IN_YEAR = 365;
     constexpr int DAYS_IN_LEAP_YEAR = DAYS_IN_YEAR + 1;
-
-    const Date ZERO_DATE = Date(1, 1, 1900);
 }

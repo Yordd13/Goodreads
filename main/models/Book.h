@@ -17,12 +17,17 @@ private:
 	Date publicationDate;
 	size_t numberOfPages;
 
+	void setTitle(const std::string& title);
+	void setAuthorName(const std::string& authorName);
+	void setGenres(const std::vector<std::string>& genres);
+	void setPageCount(size_t pageCount);
+
 public:
 
 	Book() = default;
 	Book(const std::string& title, const std::string& authorName,
 		const std::string& publisherName, const Date& releaseDate,
-		int pageCount, const std::vector<std::string>& genres);
+		size_t pageCount, const std::vector<std::string>& genres);
 
 	std::string getTitle()         const;
 	std::string getAuthorName()    const;
@@ -40,7 +45,7 @@ public:
 
 private:
 
-	void updateAverageRating(int newRating);
+	void updateAverageRating(size_t newRating);
 	void updateRatingCount();
 
 	void toSerial(std::ostream& out) const;
