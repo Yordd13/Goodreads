@@ -8,6 +8,9 @@ class Repository
 protected:
     std::vector<std::unique_ptr<T>> data;
 
+	T* findMutable(std::function<bool(const T&)> pred);
+	std::vector<T*> findAllMutable(std::function<bool(const T&)> pred);
+
 public:
     Repository() = default;
     virtual ~Repository() = default;
@@ -18,6 +21,7 @@ public:
     std::vector<const T*> getAll() const;
     size_t size() const;
     bool isEmpty() const;
+    bool contains(std::function<bool(const T&)> pred) const;
     const T* findWhere(std::function<bool(const T&)> pred) const;
     std::vector<const T*>
         findAllWhere(std::function<bool(const T&)> pred) const;
@@ -30,6 +34,26 @@ public:
     bool remove(size_t index);
     bool removeWhere(std::function<bool(const T&)> pred);
 };
+
+template<typename T>
+T* Repository<T>::findMutable(std::function<bool(const T&)> pred)
+{
+    for (auto& item : data)
+    {
+        if (pred(*item))
+            return item.get();
+    }
+    return nullptr;
+}
+
+template<typename T>
+std::vector<T*> Repository<T>::findAllMutable(std::function<bool(const T&)> pred)
+{
+    std::vector<T*> result;
+    for (auto& item : data)
+        result.push_back(item.get());
+    return result;
+}
 
 template <typename T>
 void Repository<T>::add(std::unique_ptr<T> item)
