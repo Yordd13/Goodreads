@@ -48,8 +48,10 @@ template<typename T>
 std::vector<T*> Repository<T>::findAllMutable(std::function<bool(const T&)> pred)
 {
     std::vector<T*> result;
-    for (auto& item : data){
-        result.push_back(item.get());
+    for (auto& item : data) {
+        if (pred(*item)) {
+            result.push_back(item.get());
+        }
     }
     return result;
 }

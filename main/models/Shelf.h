@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "models/Book.h"
 #include "models/Date.h"
 
 class Shelf

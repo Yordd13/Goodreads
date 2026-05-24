@@ -9,7 +9,7 @@ void Message::setNameSender(const std::string& nameSender)
 		this->nameSender = nameSender;
 	}
 	else {
-		throw std::invalid_argument("Invalid sender name");
+		throw std::invalid_argument("Invalid sender name!");
 	}
 }
 
@@ -19,7 +19,7 @@ void Message::setNameReceiver(const std::string& nameReceiver)
 		this->nameReceiver = nameReceiver;
 	}
 	else {
-		throw std::invalid_argument("Invalid receiver name");
+		throw std::invalid_argument("Invalid receiver name!");
 	}
 }
 
@@ -29,11 +29,22 @@ void Message::setContent(const std::string& content)
 		this->content = content;
 	}
 	else {
-		throw std::invalid_argument("Invalid message content");
+		throw std::invalid_argument("Invalid message content!");
 	}
 }
 
-Message::Message(const std::string& nameSender, const std::string& nameReceiver, const std::string& content) : isRead(false)
+MessageType Message::typeFromInt(int typeInt)
+{
+	switch (typeInt){
+		case 0: return MessageType::FOLLOW_NOTIFY;
+		case 1: return MessageType::JOB_OFFER;
+		case 2: return MessageType::BOOK_NOTIFY;
+		default:
+			throw std::runtime_error("Invalid message type!");
+	}
+}
+
+Message::Message(const std::string& nameSender, const std::string& nameReceiver, const std::string& content, MessageType type) : isRead(false), type(type)
 {
 	setNameReceiver(nameReceiver);
 	setNameSender(nameSender);
@@ -55,6 +66,11 @@ std::string Message::getContent() const
 	return content;
 }
 
+MessageType Message::getType() const
+{
+	return type;
+}
+
 bool Message::isMessageRead() const
 {
 	return isRead;
@@ -67,13 +83,13 @@ void Message::markAsRead()
 
 void Message::toSerial(std::ostream& out) const
 {
-	//   isRead(0/1)
+	//   (int)type isRead(0/1)
 	//   nameSender
 	//   nameReceiver
 	//   contentLength
 	//   content
 
-	out << (isRead ? 1 : 0) << '\n'
+	out << static_cast<int>(type) << ' ' << (isRead ? 1 : 0) << '\n'
 		<< nameSender << '\n'
 		<< nameReceiver << '\n'
 		<< content.size() << '\n'
@@ -82,8 +98,8 @@ void Message::toSerial(std::ostream& out) const
 
 Message Message::fromSerial(std::istream& in)
 {
-	int readFlag;
-	in >> readFlag;
+	int typeInt, readFlag;
+	in >> typeInt >> readFlag;
 	in.ignore();
 
 	std::string sender, receiver;
@@ -98,7 +114,7 @@ Message Message::fromSerial(std::istream& in)
 	in.read(content.data(), static_cast<std::streamsize>(contentLen));
 	in.ignore();
 
-	Message msg(sender, receiver, content);
+	Message msg(sender, receiver, content, typeFromInt(typeInt));
 	if (readFlag) {
 		msg.markAsRead();
 	}

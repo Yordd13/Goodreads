@@ -2,7 +2,6 @@
 #include <string>
 #include <vector>
 #include "models/Date.h"
-#include "repositories/UserRepository.h"
 
 class User
 {
