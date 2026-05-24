@@ -23,12 +23,10 @@ public:
     bool isEmpty() const;
     bool contains(std::function<bool(const T&)> pred) const;
     const T* findWhere(std::function<bool(const T&)> pred) const;
-    std::vector<const T*>
-        findAllWhere(std::function<bool(const T&)> pred) const;
+    std::vector<const T*> findAllWhere(std::function<bool(const T&)> pred) const;
 
     bool update(size_t index, std::unique_ptr<T> item);
-    bool updateWhere(
-        std::function<bool(const T&)> pred, std::function<void(T&)> transform);
+    bool updateWhere(std::function<bool(const T&)> pred, std::function<void(T&)> transform);
 
     void clear();
     bool remove(size_t index);
@@ -50,8 +48,9 @@ template<typename T>
 std::vector<T*> Repository<T>::findAllMutable(std::function<bool(const T&)> pred)
 {
     std::vector<T*> result;
-    for (auto& item : data)
+    for (auto& item : data){
         result.push_back(item.get());
+    }
     return result;
 }
 
@@ -64,8 +63,7 @@ void Repository<T>::add(std::unique_ptr<T> item)
 template <typename T>
 void Repository<T>::addAll(std::vector<std::unique_ptr<T>> items)
 {
-    for (auto& item : items)
-    {
+    for (auto& item : items){
         data.push_back(std::move(item));
     }
 }
@@ -74,8 +72,7 @@ template <typename T>
 std::vector<const T*> Repository<T>::getAll() const
 {
     std::vector<const T*> result;
-    for (auto& item : data)
-    {
+    for (auto& item : data){
         result.push_back(item.get());
     }
     return result;
@@ -97,10 +94,8 @@ bool Repository<T>::isEmpty() const
 template <typename T>
 bool Repository<T>::contains(std::function<bool(const T&)> pred) const
 {
-    for (const auto& item : data)
-    {
-        if (pred(*item))
-        {
+    for (const auto& item : data){
+        if (pred(*item)){
             return true;
         }
     }
@@ -110,10 +105,8 @@ bool Repository<T>::contains(std::function<bool(const T&)> pred) const
 template <typename T>
 const T* Repository<T>::findWhere(std::function<bool(const T&)> pred) const
 {
-    for (const auto& item : data)
-    {
-        if (pred(*item))
-        {
+    for (const auto& item : data){
+        if (pred(*item)){
             return item.get();
         }
     }
@@ -125,10 +118,8 @@ std::vector<const T*>
 Repository<T>::findAllWhere(std::function<bool(const T&)> pred) const
 {
     std::vector<const T*> result;
-    for (const auto& item : data)
-    {
-        if (pred(*item))
-        {
+    for (const auto& item : data){
+        if (pred(*item)){
             result.push_back(item.get());
         }
     }
@@ -138,8 +129,7 @@ Repository<T>::findAllWhere(std::function<bool(const T&)> pred) const
 template <typename T>
 bool Repository<T>::update(size_t index, std::unique_ptr<T> item)
 {
-    if (index >= data.size())
-    {
+    if (index >= data.size()){
         return false;
     }
 
@@ -152,10 +142,8 @@ bool Repository<T>::updateWhere(
     std::function<bool(const T&)> pred, std::function<void(T&)> transform)
 {
     bool hasTransformed = false;
-    for (auto& item : data)
-    {
-        if (pred(*item))
-        {
+    for (auto& item : data){
+        if (pred(*item)){
             transform(*item);
             hasTransformed = true;
         }
@@ -172,8 +160,7 @@ void Repository<T>::clear()
 template <typename T>
 bool Repository<T>::remove(size_t index)
 {
-    if (index >= data.size())
-    {
+    if (index >= data.size()){
         return false;
     }
     data.erase(data.begin() + index);
@@ -183,8 +170,9 @@ bool Repository<T>::remove(size_t index)
 template <typename T>
 bool Repository<T>::removeWhere(std::function<bool(const T&)> pred)
 {
-    size_t removed = std::erase_if(
-        data, [&](const std::unique_ptr<T>& uptr) { return pred(*uptr); });
+    size_t removed = std::erase_if(data, [&](const std::unique_ptr<T>& uptr) { 
+        return pred(*uptr); 
+    });
 
     return removed > 0;
 }

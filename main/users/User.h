@@ -2,10 +2,11 @@
 #include <string>
 #include <vector>
 #include "models/Date.h"
+#include "repositories/UserRepository.h"
 
 class User
 {
-    //TODO: friend class UserRepository;
+    friend class UserRepository;
 
 private:
     std::string username;
