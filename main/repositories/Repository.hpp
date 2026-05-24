@@ -16,7 +16,7 @@ public:
     virtual ~Repository() = default;
 
     void add(std::unique_ptr<T> item);
-    void addAll(std::vector<std::unique_ptr<T>> items);
+    void addAll(std::vector<std::unique_ptr<T>>&& items);
 
     std::vector<const T*> getAll() const;
     size_t size() const;
@@ -63,7 +63,7 @@ void Repository<T>::add(std::unique_ptr<T> item)
 }
 
 template <typename T>
-void Repository<T>::addAll(std::vector<std::unique_ptr<T>> items)
+void Repository<T>::addAll(std::vector<std::unique_ptr<T>>&& items)
 {
     for (auto& item : items){
         data.push_back(std::move(item));

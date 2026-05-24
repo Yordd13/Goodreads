@@ -6,8 +6,7 @@
 
 void Book::setTitle(const std::string& title)
 {
-    if(bookValidation::isValidTitle(title))
-    {
+    if(bookValidation::isValidTitle(title)){
         this->title = title;
     }
     else {
@@ -17,8 +16,7 @@ void Book::setTitle(const std::string& title)
 
 void Book::setAuthorName(const std::string& authorName)
 {
-    if(bookValidation::isValidAuthorName(authorName))
-    {
+    if(bookValidation::isValidAuthorName(authorName)){
         this->authorName = authorName;
     }
     else {
@@ -28,8 +26,7 @@ void Book::setAuthorName(const std::string& authorName)
 
 void Book::setGenres(const std::vector<std::string>& genres)
 {
-    if(bookValidation::isValidGenres(genres))
-    {
+    if(bookValidation::isValidGenres(genres)){
         this->genres = genres;
     }
     else {
@@ -39,8 +36,7 @@ void Book::setGenres(const std::vector<std::string>& genres)
 
 void Book::setPageCount(size_t pageCount)
 {
-    if(bookValidation::isValidPageCount(pageCount))
-    {
+    if(bookValidation::isValidPageCount(pageCount)){
         this->numberOfPages = pageCount;
     }
     else {
@@ -105,8 +101,7 @@ const std::vector<std::string>& Book::getGenres() const
 
 void Book::setSynopsis(const std::string& synopsis)
 {
-	if(bookValidation::isValidSynopsis(synopsis))
-    {
+	if(bookValidation::isValidSynopsis(synopsis)){
         this->sinopsis = synopsis;
     }
     else {
@@ -116,8 +111,7 @@ void Book::setSynopsis(const std::string& synopsis)
 
 void Book::addRating(int rating)
 {
-	if(bookValidation::isValidRating(rating))
-    {
+	if(bookValidation::isValidRating(rating)){
         updateAverageRating(rating);
         updateRatingCount();
     }
@@ -194,8 +188,7 @@ Book Book::fromSerial(std::istream& in)
 
     std::vector<std::string> genres;
     genres.reserve(genreCount);
-    for (int i = 0; i < genreCount; i++)
-    {
+    for (int i = 0; i < genreCount; i++){
         std::string g;
         std::getline(in, g);
         genres.push_back(g);

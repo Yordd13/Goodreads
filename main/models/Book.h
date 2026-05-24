@@ -25,18 +25,16 @@ private:
 public:
 
 	Book() = default;
-	Book(const std::string& title, const std::string& authorName,
-		const std::string& publisherName, const Date& releaseDate,
-		size_t pageCount, const std::vector<std::string>& genres);
+	Book(const std::string& title, const std::string& authorName, const std::string& publisherName, const Date& releaseDate, size_t pageCount, const std::vector<std::string>& genres);
 
-	std::string getTitle()         const;
-	std::string getAuthorName()    const;
+	std::string getTitle() const;
+	std::string getAuthorName() const;
 	std::string getPublisherName() const;
-	std::string getSynopsis()      const;
-	Date        getReleaseDate()   const;
-	size_t      getPageCount()     const;
-	double      getAvgRating()     const;
-	size_t      getRatingCount()   const;
+	std::string getSynopsis() const;
+	Date getReleaseDate() const;
+	size_t getPageCount() const;
+	double getAvgRating() const;
+	size_t getRatingCount() const;
 	const std::vector<std::string>& getGenres() const;
 
 	void setSynopsis(const std::string& synopsis);
