@@ -20,4 +20,8 @@ struct PersonalLibrary
 
     void serialize(std::ostream& out)  const;
     static PersonalLibrary deserialize(std::istream& in);
+
+private:
+
+    static ReadStatus statusFromInt(int statusInt);
 };

@@ -42,9 +42,4 @@ public:
 
     void serialize(std::ostream& out)  const;
     void deserialize(std::istream& in);
-
-
-	//TODO: add this to validation utils
-    //static bool isValidUsername(const std::string& username);
-    //static bool isValidPassword(const std::string& password);
 };

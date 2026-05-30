@@ -7,8 +7,7 @@ enum class MessageType {
 	BOOK_NOTIFY 
 };
 
-class Message
-{
+class Message{
 
 	friend class Reader;
 	friend class Author;
@@ -41,6 +40,7 @@ public:
 	void markAsRead();
 
 private:
+
 	void toSerial(std::ostream& os) const;
 	static Message fromSerial(std::istream& is);
 };

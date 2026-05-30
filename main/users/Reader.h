@@ -17,7 +17,7 @@ private:
     std::vector<Shelf> shelves;
     std::vector<std::string> favoriteBookTitles;
     std::vector<Message> inbox;
-    bool hasBirthdaySet;
+    bool hasBirthdaySet = false;
     Date birthday;
 
 protected:
@@ -26,9 +26,7 @@ protected:
 
 public:
     Reader() = default;
-    Reader(const std::string& username,
-        const std::string& password,
-        const Date& registrationDate);
+    Reader(const std::string& username, const std::string& password, const Date& registrationDate);
 
     const std::vector<PersonalLibrary>& getPersonalLibrary() const;
     const std::vector<Shelf>& getShelves() const;
