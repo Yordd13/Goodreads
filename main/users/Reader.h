@@ -13,7 +13,7 @@ class Reader : public User
     friend class Message;
 
 private:
-    std::vector<PersonalLibrary> readingEntries;
+    std::vector<PersonalLibrary> personalLibrary;
     std::vector<Shelf> shelves;
     std::vector<std::string> favoriteBookTitles;
     std::vector<Message> inbox;
