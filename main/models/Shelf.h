@@ -3,8 +3,10 @@
 #include <vector>
 #include "models/Date.h"
 
-class Shelf
-{
+class Shelf{
+
+	friend class Reader;
+
 private:
 
 	std::string name;

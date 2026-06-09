@@ -17,7 +17,7 @@ private:
     std::vector<Shelf> shelves;
     std::vector<std::string> favoriteBookTitles;
     std::vector<Message> inbox;
-    bool hasBirthdaySet = false;
+    bool hasBirthdaySet;
     Date birthday;
 
 protected:
