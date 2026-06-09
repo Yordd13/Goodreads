@@ -31,8 +31,6 @@ public:
 	bool removeBook(const std::string& title);
 	bool hasBook(const std::string& title) const;
 
-private:
-
 	void toSerial(std::ostream& out) const;
 	static Shelf fromSerial(std::istream& in);
 

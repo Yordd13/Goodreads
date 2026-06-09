@@ -1,7 +1,9 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "utils/DateUtils.h"
 #include "models/Date.h"
 #include "constants/DateResources.h"
 #include <ctime>
+#include <chrono>
 
 bool DateUtils::isLeapYear(int year)
 {
@@ -20,10 +22,9 @@ int DateUtils::daysInMonth(int month, int year)
 
 Date DateUtils::today()
 {
-    std::time_t t = std::time(nullptr);
-    std::tm now{};
+    auto now = std::chrono::system_clock::now();
+    std::time_t t = std::chrono::system_clock::to_time_t(now);
+    std::tm* localTime = std::localtime(&t);
 
-    localtime_s(&now, &t);
-
-    return Date(now.tm_mday, now.tm_mon + 1, now.tm_year + 1900);
+    return Date(localTime->tm_mday, localTime->tm_mon + 1, localTime->tm_year + 1900);
 }

@@ -8,10 +8,6 @@ enum class MessageType {
 };
 
 class Message{
-
-	friend class Reader;
-	friend class Author;
-
 private:
 
 	std::string nameSender;

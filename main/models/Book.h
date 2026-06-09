@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include "models/Date.h"
+#include <ostream>
 
 class Book
 {
@@ -22,6 +23,9 @@ private:
 	void setGenres(const std::vector<std::string>& genres);
 	void setPageCount(size_t pageCount);
 
+	void updateAverageRating(size_t newRating);
+	void updateRatingCount();
+
 public:
 
 	Book() = default;
@@ -40,11 +44,6 @@ public:
 	void setSynopsis(const std::string& synopsis);
 
 	void addRating(int rating);
-
-private:
-
-	void updateAverageRating(size_t newRating);
-	void updateRatingCount();
 
 	void toSerial(std::ostream& out) const;
 	static Book fromSerial(std::istream& in);

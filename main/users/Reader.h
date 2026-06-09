@@ -9,9 +9,6 @@
 
 class Reader : public User
 {
-    friend class Shelf;
-    friend class Message;
-
 private:
     std::vector<PersonalLibrary> personalLibrary;
     std::vector<Shelf> shelves;
