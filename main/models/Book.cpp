@@ -177,6 +177,7 @@ Book Book::fromSerial(std::istream& in)
 
     size_t pageCount;
     in >> pageCount;
+    in.ignore();
 
     double avgRating;
     size_t ratingCount;

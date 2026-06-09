@@ -17,15 +17,9 @@ UserRepository::~UserRepository()
 
 const User* UserRepository::findByUsername(const std::string& username) const
 {
-	const User* user = findWhere([&username](const User& u){
+	return findWhere([&username](const User& u) {
 		return u.getUsername() == username;
-	});
-
-	if (!user){
-		throw std::runtime_error("User " + username + " not found");
-	}
-
-	return user;
+		});
 }
 
 bool UserRepository::usernameExists(const std::string& username) const
@@ -55,15 +49,9 @@ std::vector<const User*> UserRepository::getFriendsOf(const std::string& usernam
 
 User* UserRepository::getMutable(const std::string& username)
 {
-	User* user = findMutable([&username](const User& u){
+	return findMutable([&username](const User& u) {
 		return u.getUsername() == username;
-	});
-
-	if (!user) {
-		throw std::runtime_error("User " + username + " not found");
-	}
-
-	return user;
+		});
 }
 
 std::vector<User*> UserRepository::getAllMutable()

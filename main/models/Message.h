@@ -39,8 +39,6 @@ public:
 
 	void markAsRead();
 
-private:
-
 	void toSerial(std::ostream& os) const;
 	static Message fromSerial(std::istream& is);
 };

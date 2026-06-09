@@ -56,6 +56,39 @@ bool User::checkPassword(const std::string& password) const
     return this->password == password;
 }
 
+void User::receiveMessage(const Message& msg)
+{
+    inbox.push_back(msg);
+}
+
+Message* User::getMessageAt(int index)
+{
+    if (index < 0 || index >= inbox.size()) {
+        return nullptr;
+    }
+
+    return &inbox[index];
+}
+
+bool User::deleteMessage(int index)
+{
+    if (index < 0 || index >= inbox.size()) {
+        return false;
+    }
+
+    if (!inbox[index].isMessageRead()) {
+        return false;
+    }
+
+    inbox.erase(inbox.begin() + index);
+    return true;
+}
+
+const std::vector<Message>& User::getInbox() const
+{
+    return inbox;
+}
+
 void User::serializeBase(std::ostream& out) const
 {
     out << username << '\n';
@@ -65,6 +98,11 @@ void User::serializeBase(std::ostream& out) const
     
     for (const auto& f : followerUsernames) {
         out << f << '\n';
+    }
+
+    out << inbox.size() << '\n';
+    for (const auto& msg : inbox) {
+        msg.toSerial(out);
     }
 }
 
@@ -84,11 +122,19 @@ void User::deserializeBase(std::istream& in)
 
     followerUsernames.clear();
     followerUsernames.reserve(followerCount);
-    for (size_t i = 0; i < followerCount; ++i)
-    {
+    for (size_t i = 0; i < followerCount; i++){
         std::string f;
         std::getline(in, f);
         followerUsernames.push_back(f);
+    }
+
+    size_t inboxCount;
+    in >> inboxCount;
+    in.ignore();
+
+    inbox.clear();
+    for (size_t i = 0; i < inboxCount; i++) {
+        inbox.push_back(Message::fromSerial(in));
     }
 }
 

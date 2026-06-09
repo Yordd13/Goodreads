@@ -16,7 +16,6 @@ private:
     std::vector<PersonalLibrary> personalLibrary;
     std::vector<Shelf> shelves;
     std::vector<std::string> favoriteBookTitles;
-    std::vector<Message> inbox;
     bool hasBirthdaySet;
     Date birthday;
 
@@ -31,7 +30,6 @@ public:
     const std::vector<PersonalLibrary>& getPersonalLibrary() const;
     const std::vector<Shelf>& getShelves() const;
     const std::vector<std::string>& getFavorites() const;
-    const std::vector<Message>& getInbox() const;
     bool hasBirthday() const;
     Date getBirthday() const;
 
@@ -48,10 +46,6 @@ public:
     bool removeFromShelf(const std::string& bookTitle, const std::string& shelfName);
     Shelf* findShelf(const std::string& name);
     const Shelf* findShelf(const std::string& name) const;
-
-    void receiveMessage(const Message& msg);
-    Message* getMessageAt(int index);
-    bool deleteMessage(int index);
 
     void setBirthday(const Date& date);
     void clearBirthday();

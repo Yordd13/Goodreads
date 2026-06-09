@@ -1,5 +1,6 @@
 #include "users/Reader.h"
 #include <iostream>
+#include <utils/DateUtils.h>
 
 Reader::Reader(const std::string& username, const std::string& password, const Date& registrationDate) : User(username, password, registrationDate), hasBirthdaySet(false), birthday()
 {}
@@ -17,11 +18,6 @@ const std::vector<Shelf>& Reader::getShelves() const
 const std::vector<std::string>& Reader::getFavorites() const
 {
     return favoriteBookTitles;
-}
-
-const std::vector<Message>& Reader::getInbox() const
-{
-    return inbox;
 }
 
 bool Reader::hasBirthday() const
@@ -100,8 +96,7 @@ bool Reader::createShelf(const std::string& name)
 		return false;
 	}
 
-	//TODO: use current date
-	shelves.push_back(Shelf(name, Date(1, 1, 2000)));
+	shelves.push_back(Shelf(name, DateUtils::today()));
 	return true;
 }
 
@@ -165,33 +160,6 @@ const Shelf* Reader::findShelf(const std::string& name) const
 		});
 
 	return it != shelves.end() ? &(*it) : nullptr;
-}
-
-void Reader::receiveMessage(const Message& msg)
-{
-	inbox.push_back(msg);
-}
-
-Message* Reader::getMessageAt(int index)
-{
-	if (index < 0 || index >= inbox.size()) {
-		return nullptr;
-	}
-	return &inbox[index];
-}
-
-bool Reader::deleteMessage(int index)
-{
-	if (index < 0 || index >= inbox.size()) {
-		return false;
-	}
-
-	if (!inbox[index].isMessageRead()) {
-		return false;
-	}
-
-	inbox.erase(inbox.begin() + index);
-	return true;
 }
 
 void Reader::setBirthday(const Date& date)
@@ -277,11 +245,6 @@ void Reader::serializeExtra(std::ostream& out) const
 	if (hasBirthdaySet) {
 		out << birthday.toSerial() << '\n';
 	}
-
-	out << inbox.size() << '\n';
-	for (const auto& msg : inbox) {
-		msg.toSerial(out);
-	}
 }
 
 void Reader::deserializeExtra(std::istream& in)
@@ -325,14 +288,5 @@ void Reader::deserializeExtra(std::istream& in)
 		in >> serialDate;
 		in.ignore();
 		birthday = Date::fromSerial(serialDate);
-	}
-
-	size_t inboxCount;
-	in >> inboxCount;
-	in.ignore();
-
-	inbox.clear();
-	for (size_t i = 0; i < inboxCount; i++) {
-		inbox.push_back(Message::fromSerial(in));
 	}
 }
