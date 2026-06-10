@@ -83,6 +83,9 @@ void UserService::clearBirthday(Reader* currReader)
     if(currReader->hasBirthday()) {
         currReader->clearBirthday();
     }
+    else {
+		throw std::runtime_error("Birthday is not set!");
+    }
 }
 
 std::vector<const Message*> UserService::getInbox(User* currUser, std::optional<MessageType> filter) const
@@ -119,7 +122,7 @@ void UserService::deleteMessage(User* currUser, int messageIndex)
 	}
 
 	if (!msg->isMessageRead()) {
-        throw std::runtime_error("Cannot delete an unread message!");
+        throw std::invalid_argument("Cannot delete an unread message!");
 	}
 
 	currUser->deleteMessage(messageIndex);
@@ -129,17 +132,17 @@ void UserService::acceptJobOffer(Author* currAuthor, int messageIndex)
 {
     Message* msg = currAuthor->getMessageAt(messageIndex);
     if (msg == nullptr) {
-        throw std::runtime_error("Message index out of bounds!");
+        throw std::out_of_range("Message index out of bounds!");
     }
     if (msg->getType() != MessageType::JOB_OFFER) {
-        throw std::runtime_error("Message is not a job offer!");
+        throw std::invalid_argument("Message is not a job offer!");
     }
 
 	const std::string& publisherUsername = msg->getNameSender();
 
 	User* publisherUser = userRepo.getMutable(publisherUsername);
     if (publisherUser == nullptr) {
-        throw std::runtime_error("Publisher user " + publisherUsername + " not found!");
+        throw std::runtime_error("Publisher user not found!");
 	}
 
 	Publisher* publisher = dynamic_cast<Publisher*>(publisherUser);
