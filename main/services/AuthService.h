@@ -1,9 +1,11 @@
 #pragma once
 #include <string>
+#include <memory>
 #include "repositories/UserRepository.h"
 #include "users/Reader.h"
 #include "users/Author.h"
 #include "users/Publisher.h"
+#include "utils/DateUtils.h"
 
 class AuthService {
 private:
@@ -11,6 +13,9 @@ private:
 	UserRepository& userRepo;
 	User* currentUser;
 
+    void validateRegistration(const std::string& username, const std::string& password, const std::string& type) const;
+
+    std::unique_ptr<User> createUser(const std::string& username, const std::string& password, const std::string& type) const;
 public:
 
     AuthService(UserRepository& userRepo);
