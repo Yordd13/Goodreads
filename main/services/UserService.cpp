@@ -2,37 +2,18 @@
 #include "users/Reader.h"
 #include "users/Author.h"
 #include "users/Publisher.h"
-#include <iostream>
 #include <algorithm>
 #include <stdexcept>
 
 UserService::UserService(UserRepository& userRepo, BookRepository& bookRepo) : userRepo(userRepo), bookRepo(bookRepo)
 {}
 
-void UserService::search(const std::string & query) const
+std::pair<std::vector<const User*>, std::vector<const Book*>> UserService::search(const std::string& query) const
 {
-	auto userMatches = userRepo.fuzzySearchByUsername(query);
-	auto bookMatches = bookRepo.fuzzySearchByTitle(query);
-
-    std::cout << "Users:\n";
-    if (userMatches.empty()) {
-        std::cout << " no users found\n";
-    }
-    else {
-        for (const User* u : userMatches) {
-            std::cout << "  " << u->getUsername() << " -> " << u->getType() << "\n";
-        }
-    }
-
-    std::cout << "\nBooks:\n";
-    if (bookMatches.empty()) {
-        std::cout << " no books found\n";
-    }
-    else {
-        for (const Book* b : bookMatches) {
-            std::cout << "  " << b->getTitle() << " -> " << b->getAvgRating() << "\n";
-        }
-    }
+    return {
+        userRepo.fuzzySearchByUsername(query),
+        bookRepo.fuzzySearchByTitle(query)
+    };
 }
 
 void UserService::followUser(const std::string& fromUsername, const std::string& targetUsername)
@@ -56,7 +37,7 @@ void UserService::followUser(const std::string& fromUsername, const std::string&
 	targetUser->receiveMessage(Message(fromUsername, targetUsername, fromUsername + " started following you!", MessageType::FOLLOW_NOTIFY));
 }
 
-std::vector<const User*> UserService::getFriends(const std::string requesterUsername, std::optional<std::string> targetUsername) const
+std::vector<const User*> UserService::getFriends(const std::string& requesterUsername, std::optional<std::string> targetUsername) const
 {
 	const std::string& target = targetUsername.has_value() ? targetUsername.value() : requesterUsername;
 
@@ -79,7 +60,7 @@ std::vector<const User*> UserService::getFriends(const std::string requesterUser
     return userRepo.getFriendsOf(target);
 }
 
-void UserService::showProfile(const std::string& requesterUsername, std::optional<std::string> targetUsername) const
+const User* UserService::getProfile(const std::string& requesterUsername, std::optional<std::string> targetUsername) const
 {
     const std::string& target = targetUsername.has_value() ? targetUsername.value() : requesterUsername;
     const User* user = userRepo.findByUsername(target);
@@ -87,7 +68,7 @@ void UserService::showProfile(const std::string& requesterUsername, std::optiona
         throw std::runtime_error("User " + target + " not found!");
     }
 
-	user->showProfile();
+	return user;
 }
 
 void UserService::addBirthday(const std::string& username, const Date& birthday)
@@ -100,7 +81,7 @@ void UserService::addBirthday(const std::string& username, const Date& birthday)
 
 	Reader* reader = dynamic_cast<Reader*>(user);
     if (reader == nullptr) {
-        throw std::runtime_error("Only readers and authors can set a birthday!");
+        throw std::invalid_argument("Only readers and authors can set a birthday!");
 	}
 
 	reader->setBirthday(birthday);
@@ -115,7 +96,7 @@ void UserService::clearBirthday(const std::string& username)
 
     Reader* reader = dynamic_cast<Reader*>(user);
     if (reader == nullptr) {
-        throw std::runtime_error("Only readers and authors can clear a birthday!");
+        throw std::invalid_argument("Only readers and authors can clear a birthday!");
     }
 
     if(!reader->hasBirthday()) {
@@ -125,33 +106,21 @@ void UserService::clearBirthday(const std::string& username)
 	reader->clearBirthday();
 }
 
-void UserService::showInbox(const std::string& username, std::optional<MessageType> filter) const
+std::vector<const Message*> UserService::getInbox(const std::string& username, std::optional<MessageType> filter) const
 {
 	const User* user = userRepo.findByUsername(username);
     if (user == nullptr) {
         throw std::runtime_error("User " + username + " not found!");
 	}
 
-	const auto& inbox = user->getInbox();
-    if(inbox.empty()) {
-        std::cout << "Inbox is empty!\n";
-        return;
-	}
-
-	bool onePrinted = false;
-    for (size_t i = 0; i < inbox.size(); ++i) {
-        const Message& msg = inbox[i];
-        if (filter.has_value() && msg.getType() != filter.value()) {
-			continue;
+    std::vector<const Message*> result;
+    for (const Message& msg : user->getInbox()) {
+        if (!filter.has_value() || msg.getType() == filter.value()) {
+            result.push_back(&msg);
         }
-            
-        printMessage(i, msg);
-        onePrinted = true;
-    }
-
-    if (!onePrinted) {
-        std::cout << "No messages of the specified type!\n";
 	}
+
+	return result;
 }
 
 void UserService::readMessage(const std::string& username, int messageIndex)
@@ -164,7 +133,7 @@ void UserService::readMessage(const std::string& username, int messageIndex)
 
 	Message* msg = user->getMessageAt(messageIndex);
     if (msg == nullptr) {
-        throw std::runtime_error("Message index out of bounds!");
+        throw std::out_of_range("Message index out of bounds!");
 	}
 
     if(msg->isMessageRead()) {
@@ -184,7 +153,7 @@ void UserService::deleteMessage(const std::string& username, int messageIndex)
 
 	Message* msg = user->getMessageAt(messageIndex);
     if (msg == nullptr) {
-        throw std::runtime_error("Message index out of bounds!");
+        throw std::out_of_range("Message index out of bounds!");
 	}
 
 	if (!msg->isMessageRead()) {
@@ -263,7 +232,7 @@ void UserService::leaveJob(const std::string& authorUsername, const std::string&
 	publisher->removeAuthor(authorUsername);
 }
 
-void UserService::showFollowers(const std::string& authorUsername) const
+std::vector<const User*> UserService::getFollowers(const std::string& authorUsername) const
 {
     User* authorUser = userRepo.getMutable(authorUsername);
     if (authorUser == nullptr) {
@@ -275,16 +244,7 @@ void UserService::showFollowers(const std::string& authorUsername) const
         throw std::runtime_error("User " + authorUsername + " is not an author!");
     }
 
-    const auto& followers = userRepo.getFollowersOf(authorUsername);
-    if(followers.empty()) {
-        std::cout << "No followers!\n";
-        return;
-    }
-
-    std::cout << "Followers of " << authorUsername << ":\n";
-    for (const User* follower : followers) {
-        std::cout << "  " << follower->getUsername() << " -> " << follower->getType() << "\n";
-	}
+	return userRepo.getFollowersOf(authorUsername);
 }
 
 void UserService::sendOffer(const std::string& publisherUsername, const std::string& authorUsername)
@@ -311,12 +271,4 @@ void UserService::sendOffer(const std::string& publisherUsername, const std::str
 	}
 
 	author->receiveMessage(Message(publisherUsername, authorUsername, publisherUsername + " has sent you a job offer!", MessageType::JOB_OFFER));
-}
-
-void UserService::printMessage(int index, const Message& msg) const
-{
-    std::cout << "[" << index << "] "
-        << (msg.isMessageRead() ? "[read]  " : "[unread]")
-        << " From: " << msg.getNameSender()
-        << " | " << msg.getContent() << "\n";
 }
