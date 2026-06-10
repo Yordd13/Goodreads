@@ -23,6 +23,7 @@ public:
     void addAuthor(const std::string& authorName);
     void addPublishedTitle(const std::string& title);
     bool hasAuthor(const std::string& authorName) const;
+    void removeAuthor(const std::string& authorName);
 
     std::string getType() const override;
     void showProfile() const override;

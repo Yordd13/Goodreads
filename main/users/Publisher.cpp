@@ -33,6 +33,12 @@ bool Publisher::hasAuthor(const std::string& authorName) const
     return std::find(authorNames.begin(), authorNames.end(), authorName) != authorNames.end();
 }
 
+void Publisher::removeAuthor(const std::string& authorName)
+{
+    auto it = std::find(authorNames.begin(), authorNames.end(), authorName);
+    authorNames.erase(it);
+}
+
 std::string Publisher::getType() const
 {
     return "Publisher";

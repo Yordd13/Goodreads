@@ -30,15 +30,10 @@ void Author::addPublisher(const std::string& publisherName)
 	}
 }
 
-bool Author::removePublisher(const std::string& publisherName)
+void Author::removePublisher(const std::string& publisherName)
 {
     auto it = std::find(publisherNames.begin(), publisherNames.end(), publisherName);
-    if (it == publisherNames.end()) {
-        return false;
-    }
-
     publisherNames.erase(it);
-    return true;
 }
 
 bool Author::hasPublisher(const std::string& publisherName) const
@@ -86,6 +81,11 @@ void Author::showProfile() const
         for (const auto& favorite : getFavorites()){
             std::cout << "  - " << favorite << "\n";
         }
+    }
+
+    std::cout << "Library (" << getPersonalLibrary().size() << " books):\n";
+    for (const auto& e : getPersonalLibrary()) {
+        std::cout << "  - " << e.title << "\n";
     }
 }
 

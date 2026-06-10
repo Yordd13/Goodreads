@@ -22,7 +22,7 @@ public:
 
     void addPublishedTitle(const std::string& title);
     void addPublisher(const std::string& publisherName);
-    bool removePublisher(const std::string& publisherName);
+    void removePublisher(const std::string& publisherName);
     bool hasPublisher(const std::string& publisherName) const;
 
     std::string getType() const override;

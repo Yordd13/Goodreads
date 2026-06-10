@@ -7,6 +7,7 @@
 class UserRepository : public Repository<User>
 {
 private:
+
     std::string filePath;
 
 public:
@@ -26,7 +27,13 @@ public:
 
     std::vector<User*> getAllMutable();
 
+    std::vector<const User*> fuzzySearchByUsername(const std::string& query) const;
+
 private:
+
     void loadFromFile();
     void saveToFile() const;
+
+    static int editDistance(const std::string& a, const std::string& b);
+
 };
