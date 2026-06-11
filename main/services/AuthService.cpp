@@ -56,15 +56,15 @@ void AuthService::registerUser(const std::string& username, const std::string& p
 void AuthService::login(const std::string& username, const std::string& password)
 {
     if (isLoggedIn()) {
-        throw std::runtime_error("Already logged in as '" + getCurrentUsername() + "'. Please logout first.");
+        throw std::runtime_error("Already logged in as " + getCurrentUsername() + "!");
     }
     User* user = userRepo.getMutable(username);
     if (user == nullptr) {
-        throw std::runtime_error("User '" + username + "' not found.");
+        throw std::runtime_error("User not found!");
     }
 
     if (!user->checkPassword(password)) {
-        throw std::invalid_argument("Incorrect password.");
+        throw std::invalid_argument("Incorrect password!");
     }
 
     currentUser = user;
@@ -73,7 +73,7 @@ void AuthService::login(const std::string& username, const std::string& password
 void AuthService::logout()
 {
     if (!isLoggedIn()) {
-        throw std::runtime_error("No user is currently logged in.");
+        throw std::runtime_error("No user is currently logged in!");
     }
 
     currentUser = nullptr;

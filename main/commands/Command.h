@@ -4,6 +4,8 @@
 
 class Command {
 public:
+
 	virtual ~Command() = default;
 	virtual void execute(const std::vector<std::string>& data) = 0;
+
 };
