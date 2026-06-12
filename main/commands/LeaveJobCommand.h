@@ -3,7 +3,7 @@
 #include "services/AuthService.h"
 #include "services/UserService.h"
 
-class LeaveCommand : public Command
+class LeaveJobCommand : public Command
 {
 private:
 
@@ -12,7 +12,7 @@ private:
 
 public:
     
-    LeaveCommand(AuthService& authService, UserService& userService);
+    LeaveJobCommand(AuthService& authService, UserService& userService);
     void execute(const std::vector<std::string>& data) override;
 
 };

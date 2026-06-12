@@ -1,10 +1,10 @@
 #include "commands/LeaveJobCommand.h"
 #include <iostream>
 
-LeaveCommand::LeaveCommand(AuthService& authService, UserService& userService) : authService(authService), userService(userService)
+LeaveJobCommand::LeaveJobCommand(AuthService& authService, UserService& userService) : authService(authService), userService(userService)
 {}
 
-void LeaveCommand::execute(const std::vector<std::string>& data)
+void LeaveJobCommand::execute(const std::vector<std::string>& data)
 {
     Author* author = authService.getCurrentAuthor();
     if (author == nullptr) {
