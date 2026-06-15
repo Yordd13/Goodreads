@@ -32,18 +32,23 @@ void ShowInboxCommand::execute(const std::vector<std::string>& data)
     }
 
     try {
-        auto messages = userService.getInbox(user, filter);
+        const std::vector<Message>& inbox = user->getInbox();
 
-        if (messages.empty()) {
-            std::cout << "Your inbox is empty!\n";
-            return;
+        bool anyFound = false;
+        std::cout << "Inbox:\n";
+
+        for (int i = 0; i < inbox.size(); i++) {
+            const Message& msg = inbox[i];
+            if (filter.has_value() && msg.getType() != filter.value()) {
+                continue;
+            }
+            anyFound = true;
+            std::string readStatus = msg.isMessageRead() ? "[read]" : "[unread]";
+            std::cout << "[" << i << "] " << readStatus << " From " << msg.getNameSender() << ": " << msg.getContent() << "\n";
         }
 
-        std::cout << "Inbox (" << messages.size() << " messages):\n";
-        for (size_t i = 0; i < messages.size(); i++) {
-            const Message* msg = messages[i];
-            std::string readStatus = msg->isMessageRead() ? "[read]" : "[unread]";
-            std::cout << "[" << i << "] " << readStatus << " From " << msg->getNameSender() << ": " << msg->getContent() << "\n";
+        if (!anyFound) {
+            std::cout << "Your inbox is empty!\n";
         }
     }
     catch (const std::exception& e) {

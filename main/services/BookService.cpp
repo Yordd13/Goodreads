@@ -16,12 +16,12 @@ void BookService::addBook(Reader* currentReader, const std::string& title, ReadS
 		throw std::invalid_argument("Book already exists in your library!");
 	}
 
-	currentReader->addBook(title, status, rating);
-
 	if (rating != -1) {
 		Book* book = bookRepo.getMutable(title);
 		book->addRating(rating);
 	}
+
+	currentReader->addBook(title, status, rating);
 }
 
 void BookService::deleteBook(Reader* currentReader, const std::string& title)

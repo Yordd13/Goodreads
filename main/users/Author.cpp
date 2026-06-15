@@ -32,8 +32,10 @@ void Author::addPublisher(const std::string& publisherName)
 
 void Author::removePublisher(const std::string& publisherName)
 {
-    auto it = std::find(publisherNames.begin(), publisherNames.end(), publisherName);
-    publisherNames.erase(it);
+    auto publisher = std::find(publisherNames.begin(), publisherNames.end(), publisherName);
+    if(publisher != publisherNames.end()){
+        publisherNames.erase(publisher);
+	}
 }
 
 bool Author::hasPublisher(const std::string& publisherName) const

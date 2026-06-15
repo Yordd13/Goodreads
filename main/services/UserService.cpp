@@ -31,7 +31,7 @@ void UserService::followUser(User* currUser, const std::string& targetUsername)
 		throw std::invalid_argument("You are already following this user!");
     }
 
-	currUser->addFollower(targetUsername);
+    targetUser->addFollower(currUser->getUsername());
 	targetUser->receiveMessage(Message(currUser->getUsername(), targetUsername, currUser->getUsername() + " started following you!", MessageType::FOLLOW_NOTIFY));
 }
 
