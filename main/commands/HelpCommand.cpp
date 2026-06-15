@@ -42,7 +42,6 @@ void HelpCommand::showReaderHelp() const
     std::cout << "\n    Reader Commands    \n";
     std::cout << "  follow <username>\n";
     std::cout << "  add-book <bookName> <status> [rating]\n";
-    std::cout << "                                              status: plan-to-read, reading, paused, dropped\n";
     std::cout << "  delete-book <bookName>\n";
     std::cout << "  create-shelf <name>\n";
     std::cout << "  delete-shelf <name>\n";
