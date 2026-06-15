@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{f5559e8a-444e-45f3-965d-39a4f636bc87}</ProjectGuid>
+    <RootNamespace>main</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>goodreads</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp23</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="commands\AddBirthdayCommand.cpp" />
+    <ClCompile Include="commands\AddToShelfCommand.cpp" />
+    <ClCompile Include="commands\AddBookCommand.cpp" />
+    <ClCompile Include="commands\AddSynopsisCommand.cpp" />
+    <ClCompile Include="commands\AcceptOfferCommand.cpp" />
+    <ClCompile Include="commands\HelpCommand.cpp" />
+    <ClCompile Include="commands\RegisterCommand.cpp" />
+    <ClCompile Include="commands\LoginCommand.cpp" />
+    <ClCompile Include="commands\LogoutCommand.cpp" />
+    <ClCompile Include="commands\LeaveJobCommand.cpp" />
+    <ClCompile Include="commands\FollowersCommand.cpp" />
+    <ClCompile Include="commands\PublishCommand.cpp" />
+    <ClCompile Include="commands\OfferCommand.cpp" />
+    <ClCompile Include="commands\FollowCommand.cpp" />
+    <ClCompile Include="commands\DeleteBookCommand.cpp" />
+    <ClCompile Include="commands\CreateShelfCommand.cpp" />
+    <ClCompile Include="commands\DeleteShelfCommand.cpp" />
+    <ClCompile Include="commands\RemoveFromShelfCommand.cpp" />
+    <ClCompile Include="commands\ReadMsgCommand.cpp" />
+    <ClCompile Include="commands\DeleteMsgCommand.cpp" />
+    <ClCompile Include="commands\FriendsCommand.cpp" />
+    <ClCompile Include="commands\ProfileCommand.cpp" />
+    <ClCompile Include="repositories\BookRepository.cpp" />
+    <ClCompile Include="models\PersonalLibrary.cpp" />
+    <ClCompile Include="repositories\UserRepository.cpp" />
+    <ClCompile Include="commands\SearchCommand.cpp" />
+    <ClCompile Include="services\AuthService.cpp" />
+    <ClCompile Include="services\BookService.cpp" />
+    <ClCompile Include="services\UserService.cpp" />
+    <ClCompile Include="commands\ShowShelfCommand.cpp" />
+    <ClCompile Include="commands\ShowInboxCommand.cpp" />
+    <ClCompile Include="users\Author.cpp" />
+    <ClCompile Include="users\Publisher.cpp" />
+    <ClCompile Include="users\Reader.cpp" />
+    <ClCompile Include="users\User.cpp" />
+    <ClCompile Include="validator\UserValidation.cpp" />
+    <ClCompile Include="validator\ShelfValidation.cpp" />
+    <ClCompile Include="validator\MessageValidation.cpp" />
+    <ClCompile Include="validator\BookValidation.cpp" />
+    <ClCompile Include="models\Message.cpp" />
+    <ClCompile Include="models\Book.cpp" />
+    <ClCompile Include="models\Shelf.cpp" />
+    <ClCompile Include="utils\DateUtils.cpp" />
+    <ClCompile Include="models\Date.cpp" />
+    <ClCompile Include="validator\DateValidation.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="commands\AddBirthdayCommand.h" />
+    <ClInclude Include="commands\AddToShelfCommand.h" />
+    <ClInclude Include="commands\AddBookCommand.h" />
+    <ClInclude Include="commands\AddSynopsisCommand.h" />
+    <ClInclude Include="commands\AcceptOfferCommand.h" />
+    <ClInclude Include="commands\Command.h" />
+    <ClInclude Include="commands\HelpCommand.h" />
+    <ClInclude Include="commands\RegisterCommand.h" />
+    <ClInclude Include="commands\LoginCommand.h" />
+    <ClInclude Include="commands\LogoutCommand.h" />
+    <ClInclude Include="commands\LeaveJobCommand.h" />
+    <ClInclude Include="commands\FollowersCommand.h" />
+    <ClInclude Include="commands\PublishCommand.h" />
+    <ClInclude Include="commands\OfferCommand.h" />
+    <ClInclude Include="commands\FollowCommand.h" />
+    <ClInclude Include="commands\DeleteBookCommand.h" />
+    <ClInclude Include="commands\CreateShelfCommand.h" />
+    <ClInclude Include="commands\DeleteShelfCommand.h" />
+    <ClInclude Include="commands\RemoveFromShelfCommand.h" />
+    <ClInclude Include="commands\ReadMsgCommand.h" />
+    <ClInclude Include="commands\DeleteMsgCommand.h" />
+    <ClInclude Include="commands\FriendsCommand.h" />
+    <ClInclude Include="commands\ProfileCommand.h" />
+    <ClInclude Include="repositories\BookRepository.h" />
+    <ClInclude Include="constants\UserResources.h" />
+    <ClInclude Include="models\PersonalLibrary.h" />
+    <ClInclude Include="repositories\Repository.hpp" />
+    <ClInclude Include="repositories\UserRepository.h" />
+    <ClInclude Include="commands\SearchCommand.h" />
+    <ClInclude Include="services\AuthService.h" />
+    <ClInclude Include="services\BookService.h" />
+    <ClInclude Include="services\UserService.h" />
+    <ClInclude Include="commands\ShowShelfCommand.h" />
+    <ClInclude Include="commands\ShowInboxCommand.h" />
+    <ClInclude Include="users\Author.h" />
+    <ClInclude Include="users\Publisher.h" />
+    <ClInclude Include="users\Reader.h" />
+    <ClInclude Include="users\User.h" />
+    <ClInclude Include="validator\UserValidation.h" />
+    <ClInclude Include="validator\ShelfValidation.h" />
+    <ClInclude Include="validator\MessageValidation.h" />
+    <ClInclude Include="validator\BookValidation.h" />
+    <ClInclude Include="constants\BookResources.h" />
+    <ClInclude Include="models\Message.h" />
+    <ClInclude Include="models\Book.h" />
+    <ClInclude Include="models\Shelf.h" />
+    <ClInclude Include="utils\DateUtils.h" />
+    <ClInclude Include="models\Date.h" />
+    <ClInclude Include="validator\DateValidation.h" />
+    <ClInclude Include="constants\DateResources.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

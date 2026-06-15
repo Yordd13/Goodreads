@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="models">
+      <UniqueIdentifier>{a0ebbb12-00ef-47c6-aa63-4c7976c42ebf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="users">
+      <UniqueIdentifier>{ae8c8f6e-1450-4b63-bf29-724e15f3034d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="repositories">
+      <UniqueIdentifier>{4aa103ce-e077-478b-9384-25549bbcfdbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="services">
+      <UniqueIdentifier>{129c7c1f-a9bf-4583-bfd7-822e8db823e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="commands">
+      <UniqueIdentifier>{e7d7ab85-48d0-4576-9762-79dc3053eb7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="controller">
+      <UniqueIdentifier>{3b81b453-0c7b-45c1-87e4-e6d8999703cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="validator">
+      <UniqueIdentifier>{2f55bf32-6582-4f9d-adaa-361d8f5c1501}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="constants">
+      <UniqueIdentifier>{949281b5-373b-4e29-a3ff-624e2a6206e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils">
+      <UniqueIdentifier>{6bf670e8-6e0c-4d5f-848b-ff76b76012ef}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="models\Date.cpp">
+      <Filter>models</Filter>
+    </ClCompile>
+    <ClCompile Include="validator\DateValidation.cpp">
+      <Filter>validator</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\DateUtils.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="models\Book.cpp">
+      <Filter>models</Filter>
+    </ClCompile>
+    <ClCompile Include="models\Shelf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="models\Message.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="validator\BookValidation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="validator\MessageValidation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="validator\ShelfValidation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="repositories\UserRepository.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="users\User.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="validator\UserValidation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="models\PersonalLibrary.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="users\Author.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="users\Reader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="users\Publisher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="repositories\BookRepository.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="services\UserService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="services\AuthService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="services\BookService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\HelpCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\RegisterCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\LoginCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\LogoutCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\AcceptOfferCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\LeaveJobCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\FollowersCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\PublishCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\AddSynopsisCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\OfferCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\FollowCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\AddBookCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\DeleteBookCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\CreateShelfCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\DeleteShelfCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\SearchCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\AddToShelfCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\RemoveFromShelfCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\ShowShelfCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\ShowInboxCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\ReadMsgCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\DeleteMsgCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\FriendsCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\AddBirthdayCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\ProfileCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="models\Date.h">
+      <Filter>models</Filter>
+    </ClInclude>
+    <ClInclude Include="validator\DateValidation.h">
+      <Filter>validator</Filter>
+    </ClInclude>
+    <ClInclude Include="constants\DateResources.h">
+      <Filter>constants</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\DateUtils.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="models\Book.h">
+      <Filter>models</Filter>
+    </ClInclude>
+    <ClInclude Include="models\Shelf.h" />
+    <ClInclude Include="models\Message.h" />
+    <ClInclude Include="constants\BookResources.h" />
+    <ClInclude Include="validator\BookValidation.h" />
+    <ClInclude Include="validator\MessageValidation.h" />
+    <ClInclude Include="constants\UserResources.h" />
+    <ClInclude Include="validator\ShelfValidation.h" />
+    <ClInclude Include="repositories\Repository.hpp" />
+    <ClInclude Include="users\User.h" />
+    <ClInclude Include="users\Reader.h" />
+    <ClInclude Include="models\PersonalLibrary.h" />
+    <ClInclude Include="users\Author.h" />
+    <ClInclude Include="users\Publisher.h" />
+    <ClInclude Include="repositories\UserRepository.h" />
+    <ClInclude Include="validator\UserValidation.h" />
+    <ClInclude Include="repositories\BookRepository.h" />
+    <ClInclude Include="services\UserService.h" />
+    <ClInclude Include="services\AuthService.h" />
+    <ClInclude Include="services\BookService.h" />
+    <ClInclude Include="commands\Command.h" />
+    <ClInclude Include="commands\HelpCommand.h" />
+    <ClInclude Include="commands\RegisterCommand.h" />
+    <ClInclude Include="commands\LoginCommand.h" />
+    <ClInclude Include="commands\LogoutCommand.h" />
+    <ClInclude Include="commands\AcceptOfferCommand.h" />
+    <ClInclude Include="commands\LeaveJobCommand.h" />
+    <ClInclude Include="commands\FollowersCommand.h" />
+    <ClInclude Include="commands\PublishCommand.h" />
+    <ClInclude Include="commands\AddSynopsisCommand.h" />
+    <ClInclude Include="commands\OfferCommand.h" />
+    <ClInclude Include="commands\FollowCommand.h" />
+    <ClInclude Include="commands\AddBookCommand.h" />
+    <ClInclude Include="commands\DeleteBookCommand.h" />
+    <ClInclude Include="commands\CreateShelfCommand.h" />
+    <ClInclude Include="commands\DeleteShelfCommand.h" />
+    <ClInclude Include="commands\SearchCommand.h" />
+    <ClInclude Include="commands\AddToShelfCommand.h" />
+    <ClInclude Include="commands\RemoveFromShelfCommand.h" />
+    <ClInclude Include="commands\ShowShelfCommand.h" />
+    <ClInclude Include="commands\ShowInboxCommand.h" />
+    <ClInclude Include="commands\ReadMsgCommand.h" />
+    <ClInclude Include="commands\DeleteMsgCommand.h" />
+    <ClInclude Include="commands\FriendsCommand.h" />
+    <ClInclude Include="commands\AddBirthdayCommand.h" />
+    <ClInclude Include="commands\ProfileCommand.h" />
+  </ItemGroup>
+</Project>
