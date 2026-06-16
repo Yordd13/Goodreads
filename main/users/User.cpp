@@ -41,12 +41,12 @@ const std::vector<std::string>& User::getFollowers() const
 
 void User::addFollower(const std::string& username)
 { 
-    if(!isFollowing(username)) {
+    if(!isFollowedBy(username)) {
         followerUsernames.push_back(username);
     }
 }
 
-bool User::isFollowing(const std::string& username) const
+bool User::isFollowedBy(const std::string& username) const
 {
     return std::find(followerUsernames.begin(), followerUsernames.end(), username) != followerUsernames.end();
 }

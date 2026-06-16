@@ -36,7 +36,7 @@ public:
     const std::vector<std::string>& getFollowers() const;
 
     void addFollower(const std::string& username);
-    bool isFollowing(const std::string& username) const;
+    bool isFollowedBy(const std::string& username) const;
     bool checkPassword(const std::string& password) const;
 
     void receiveMessage(const Message& msg);

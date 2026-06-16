@@ -32,20 +32,36 @@ bool UserRepository::usernameExists(const std::string& username) const
 
 std::vector<const User*> UserRepository::getFollowersOf(const std::string& username) const
 {
-	return findAllWhere([&username](const User& u){
-		return u.isFollowing(username);
-	});
+	const User* target = findByUsername(username);    
+	if (!target) {
+		return {};
+	}
+	
+	std::vector<const User*> result;    
+	for (const auto& f : target->getFollowers()) {        
+		if (const User* u = findByUsername(f)) {            
+			result.push_back(u);        
+		}    
+	}   
+
+	return result;
 }
 
 std::vector<const User*> UserRepository::getFriendsOf(const std::string& username) const
 {
 	const User* target = findByUsername(username);
+	if (!target) {
+		return {}; 
+	}
 
-	return findAllWhere([&username, target](const User& u){
-		return u.getUsername() != username
-			&& u.isFollowing(username)
-			&& target->isFollowing(u.getUsername());
-	});
+	std::vector<const User*> result;    
+	for (const auto& followerName : target->getFollowers()) { 
+		const User* candidate = findByUsername(followerName);        
+		if (candidate && candidate->isFollowedBy(username)) { 
+			result.push_back(candidate); 
+		} 
+	}    
+	return result;
 }
 
 User* UserRepository::getMutable(const std::string& username)

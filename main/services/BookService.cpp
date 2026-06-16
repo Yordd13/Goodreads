@@ -155,6 +155,9 @@ void BookService::notifyFollowers(const std::string& authorUsername, const std::
 {
 	auto allUsers = userRepo.getAllMutable();
 
+	const User* author = userRepo.findByUsername(authorUsername);    
+	const User* publisher = userRepo.findByUsername(publisherUsername);
+
 	for (User* user : allUsers) {
 		const std::string& username = user->getUsername();
 
@@ -162,8 +165,8 @@ void BookService::notifyFollowers(const std::string& authorUsername, const std::
 			continue;
 		}
 
-		bool followsAuthor = user->isFollowing(authorUsername);
-		bool followsPublisher = user->isFollowing(publisherUsername);
+		bool followsAuthor = author && author->isFollowedBy(username);        
+		bool followsPublisher = publisher && publisher->isFollowedBy(username);
 
 		if (!followsAuthor && !followsPublisher) {
 			continue;

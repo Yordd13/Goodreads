@@ -27,8 +27,8 @@ void UserService::followUser(User* currUser, const std::string& targetUsername)
         throw std::runtime_error("User " + targetUsername + " not found!");
 	}
 
-    if (currUser->isFollowing(targetUsername)) {
-		throw std::invalid_argument("You are already following this user!");
+    if (targetUser->isFollowedBy(currUser->getUsername())) {
+        throw std::invalid_argument("You are already following this user!"); 
     }
 
     targetUser->addFollower(currUser->getUsername());
