@@ -6,9 +6,9 @@ FollowCommand::FollowCommand(AuthService& authService, UserService& userService)
 
 void FollowCommand::execute(const std::vector<std::string>& data)
 {
-    User* user = authService.getCurrentUser();
+    Reader* user = authService.getCurrentReader();
     if (user == nullptr) {
-        std::cout << "Error: you must be logged in to follow a user!\n";
+        std::cout << "Error: only readers and authors can follow!\n";
         return;
     }
 

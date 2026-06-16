@@ -33,13 +33,13 @@ void HelpCommand::showGlobalHelp() const
     std::cout << "  register <username> <password> <type>\n";
     std::cout << "  login <username> <password>\n";
     std::cout << "  logout\n";
-    std::cout << "  search <name>\n";
     std::cout << "  exit\n";
 }
 
 void HelpCommand::showReaderHelp() const
 {
     std::cout << "\n    Reader Commands    \n";
+    std::cout << "  search <name>\n";
     std::cout << "  follow <username>\n";
     std::cout << "  add-book <bookName> <status> [rating]\n";
     std::cout << "  delete-book <bookName>\n";
@@ -71,7 +71,4 @@ void HelpCommand::showPublisherHelp() const
     std::cout << "  publish <bookTitle> <authorName> <releaseDate> <pageCount> <genres...>\n";
     std::cout << "  add-synopsis <bookTitle> <synopsis>\n";
     std::cout << "  offer <author>\n";
-    std::cout << "  show-inbox\n";
-    std::cout << "  read-msg <index>\n";
-    std::cout << "  delete-msg <index>\n";
 }

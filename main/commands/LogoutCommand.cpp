@@ -7,7 +7,6 @@ LogoutCommand::LogoutCommand(AuthService& authService) : authService(authService
 void LogoutCommand::execute(const std::vector<std::string>& data)
 {
     try {
-        const std::string username = authService.getCurrentUsername();
         authService.logout();
         std::cout << "Successfully logged out!\n";
     }

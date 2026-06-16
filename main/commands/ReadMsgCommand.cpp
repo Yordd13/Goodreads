@@ -8,9 +8,9 @@ ReadMsgCommand::ReadMsgCommand(AuthService& authService, UserService& userServic
 
 void ReadMsgCommand::execute(const std::vector<std::string>& data)
 {
-    User* user = authService.getCurrentUser();
+    Reader* user = authService.getCurrentReader();
     if (user == nullptr) {
-        std::cout << "Error: you must be logged in to read messages!\n";
+        std::cout << "Error: only readers and authors can read messages!\n";
         return;
     }
 

@@ -7,9 +7,9 @@ FriendsCommand::FriendsCommand(AuthService& authService, UserService& userServic
 
 void FriendsCommand::execute(const std::vector<std::string>& data)
 {
-    User* user = authService.getCurrentUser();
+    Reader* user = authService.getCurrentReader();
     if (user == nullptr) {
-        std::cout << "Error: you must be logged in to view friends!\n";
+        std::cout << "Error: only readers and authors can view friends!\n";
         return;
     }
 

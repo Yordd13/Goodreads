@@ -6,8 +6,8 @@ SearchCommand::SearchCommand(AuthService& authService, UserService& userService)
 
 void SearchCommand::execute(const std::vector<std::string>& data)
 {
-    if (authService.getCurrentUser() == nullptr) {
-        std::cout << "Error: you must be logged in to search!\n";
+    if (authService.getCurrentReader() == nullptr) {
+        std::cout << "Error: you must be a reader or author to search\n";
         return;
     }
 
