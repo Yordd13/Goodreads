@@ -64,11 +64,7 @@ void run()
     }
 }
 
-void executeCommand(const std::string& input,
-    AuthService& authService,
-    UserService& userService,
-    BookService& bookService,
-    BookRepository& bookRepo)
+void executeCommand(const std::string& input, AuthService& authService, UserService& userService, BookService& bookService, BookRepository& bookRepo)
 {
     auto tokens = parseInput(input);
     if (tokens.empty()) {
@@ -161,10 +157,21 @@ void executeCommand(const std::string& input,
 std::vector<std::string> parseInput(const std::string& input)
 {
     std::vector<std::string> tokens;
-    std::istringstream stream(input);
     std::string token;
 
-    while (stream >> token) {
+    for (char c : input) {
+        if (c == ' ') {
+            if (!token.empty()) {
+                tokens.push_back(token);
+                token.clear();
+            }
+        }
+        else {
+            token += c;
+        }
+    }
+
+    if (!token.empty()) {
         tokens.push_back(token);
     }
 
