@@ -8,9 +8,9 @@ ShowInboxCommand::ShowInboxCommand(AuthService& authService, UserService& userSe
 
 void ShowInboxCommand::execute(const std::vector<std::string>& data)
 {
-    User* user = authService.getCurrentUser();
-    if (user == nullptr) {
-        std::cout << "Error: you must be logged in to view your inbox!\n";
+    Reader* reader = authService.getCurrentReader();
+    if (reader == nullptr) {
+        std::cout << "Error: only readers and authors can view the inbox\n";
         return;
     }
 
@@ -32,7 +32,7 @@ void ShowInboxCommand::execute(const std::vector<std::string>& data)
     }
 
     try {
-        const std::vector<Message>& inbox = user->getInbox();
+        const std::vector<Message>& inbox = reader->getInbox();
 
         bool anyFound = false;
         std::cout << "Inbox:\n";
